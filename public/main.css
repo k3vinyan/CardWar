@@ -1,0 +1,12 @@
+li {
+  list-style: none;
+}
+
+.player-one-hand {
+  display: flex;
+}
+
+.player-one-hand div {
+  border-style: solid;
+  border-color: black;
+}

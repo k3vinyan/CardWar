@@ -6,12 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="main.js"></script>
+  <link rel="stylesheet" href="main.css">
   <title>Document</title>
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <div ng-controller="gameCtrl as cards">
-    <p>{{cards.card.one}}</p>
+  <h1>Card Game</h1>
+  <div class="player-one-hand" ng-controller="gameCtrl as cards">
+    <ul ng-repeat="card in cards.card">
+      <div class="black"><li>{{card.name}}</li></div>
+    </ul>
   </div>
 </body>
 </html>

@@ -1,17 +1,44 @@
 (function() {
   var cardGame = angular.module('cardGame', []);
 
-  var cards = {
-    one: 1,
-    two: 2,
-    three: 3,
-    four: 4,
-    five: 5,
-    six: 6,
-    seven: 7,
-    eight: 8,
-    nine: 9
-  }
+  var cards = [
+    {
+      name: "one",
+      value: 1
+    },
+    {
+      name: "two",
+      value: 2
+    },
+    {
+      name: "three",
+      value: 3
+    },
+    {
+      name: "four",
+      value: 4
+    },
+    {
+      name: "five",
+      value: 5
+    },
+    {
+      name: "six",
+      value: 6
+    },
+    {
+      name: "seven",
+      value: 7
+    },
+    {
+      name: "nine",
+      value: 8
+    },
+    {
+      name: "nine",
+      value: 9
+    },
+  ]
 
   cardGame.controller('gameCtrl', function() {
     this.card = cards;
