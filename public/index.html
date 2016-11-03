@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="cards.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="main.js"></script>
   <link rel="stylesheet" href="main.css">
@@ -11,10 +12,15 @@
 </head>
 <body>
   <h1>Card Game</h1>
-  <div class="player-one-hand" ng-controller="gameCtrl as cards">
-    <ul ng-repeat="card in cards.card">
-      <div class="black"><li>{{card.name}}</li></div>
-    </ul>
+  <div class="board-container"  ng-controller="gameCtrl">
+    <div class="player-one-hand">
+      <ul ng-repeat="card in cards">
+        <div ng-click="pickCard(card)" class="black">
+          <li>{{card.name}}</li>
+        </div>
+      </ul>
+    </div>
+      <div class="display-card">{{displayCard.name}}</div>
   </div>
 </body>
 </html>
