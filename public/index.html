@@ -14,7 +14,7 @@
   <h1>Card Game</h1>
   <div class="board-container"  ng-controller="gameCtrl">
     <div class="player-one-hand">
-      <ul ng-repeat="card in cards">
+      <ul ng-repeat="card in playerOneCards">
         <div ng-click="pickCard(card)" class="black">
           <li>{{card.name}}</li>
         </div>
