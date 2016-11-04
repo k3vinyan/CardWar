@@ -13,6 +13,7 @@
 <body>
   <h1>Card Game</h1>
   <div class="board-container"  ng-controller="gameCtrl">
+    <div>Player1 Score: {{playerOneScore}}  | Player2 Score: {{playerTwoScore}}</div>
     <div class="player-one-hand">
       <ul ng-repeat="card in playerOneCards">
         <div ng-click="pickCard(card)" class="black">
@@ -20,7 +21,15 @@
         </div>
       </ul>
     </div>
+    <div class="player-one-hand">
+      <ul ng-repeat="card in playerTwoCards">
+        <div ng-click="pickCard(card)" class="black">
+          <li>{{card.name}}</li>
+        </div>
+      </ul>
+    </div>
       <div class="display-card">{{displayCard.name}}</div>
+      <div ng-click="reset()">reset</div>
   </div>
 </body>
 </html>
