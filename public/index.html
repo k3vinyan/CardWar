@@ -16,14 +16,7 @@
     <div>Player1 Score: {{playerOneScore}}  | Player2 Score: {{playerTwoScore}}</div>
     <div class="player-one-hand">
       <ul ng-repeat="card in playerOneCards">
-        <div ng-click="pickCard(card)" class="black">
-          <li>{{card.name}}</li>
-        </div>
-      </ul>
-    </div>
-    <div class="player-one-hand">
-      <ul ng-repeat="card in playerTwoCards">
-        <div ng-click="pickCard(card)" class="black">
+        <div ng-click="startRound(card, playerOneCards, playerTwoCards, compareCard, deleteCards)" class="black">
           <li>{{card.name}}</li>
         </div>
       </ul>
