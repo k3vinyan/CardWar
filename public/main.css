@@ -2,11 +2,11 @@ li {
   list-style: none;
 }
 
-.player-one-hand {
+.player-hand {
   display: flex;
 }
 
-.player-one-hand div {
+.player-hand div {
   border-style: solid;
   border-color: black;
 }
@@ -16,4 +16,9 @@ li {
   height: 300px;
   border-style: solid;
   border-color: black;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
 }

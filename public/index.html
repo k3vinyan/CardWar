@@ -12,16 +12,29 @@
 </head>
 <body>
   <h1>Card Game</h1>
-  <div class="board-container"  ng-controller="gameCtrl">
+  <div class="board-container"  ng-controller="gameCtrl" >
     <div>Player1 Score: {{playerOneScore}}  | Player2 Score: {{playerTwoScore}}</div>
-    <div class="player-one-hand">
+    <div class="row">
       <ul ng-repeat="card in playerOneCards">
         <div ng-click="startRound(card, playerOneCards, playerTwoCards, compareCard, deleteCards)" class="black">
           <li>{{card.name}}</li>
         </div>
       </ul>
     </div>
-      <div class="display-card">{{displayCard.name}}</div>
+    <div>
+      <div class="row">
+        <div class="display-card">{{playerOneCard.name}}</div>
+        <div class="display-card">{{playerTwoCard.name}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <ul ng-repeat="card in playerTwoCards">
+        <div>
+          <li>{{card.name}}</li>
+        </div>
+      </ul>
+    </div>
+
       <div ng-click="reset()">reset</div>
   </div>
 </body>
