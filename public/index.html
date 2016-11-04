@@ -13,28 +13,38 @@
 <body>
   <h1 class="center">Z Warrior</h1>
   <div class="board-container"  ng-controller="gameCtrl" >
-    <div>Player1 Score: {{playerOneScore}}  | Player2 Score: {{playerTwoScore}}</div>
-    <div class="row">
-      <ul ng-repeat="card in playerOneCards">
-        <div ng-click="startRound(card, playerOneCards, playerTwoCards, compareCard, deleteCards)" class="black">
-          <li>{{card.name}}</li>
-        </div>
-      </ul>
-    </div>
+    <div>Player1 Score: {{playerOne.score}}  | Player2 Score: {{playerTwo.score}}</div>
+      <div class="row">
+        <ul ng-repeat="card in playerTwo.cards">
+          <div>
+            <li>{{card.name}}</li>
+          </div>
+        </ul>
+      </div>
     <div>
       <div class="row">
-        <div class="display-card">{{playerOneCard.name}}</div>
-        <div class="display-card">{{playerTwoCard.name}}</div>
+        <div class="display-card">
+          <p>{{playerOneCard.name}}</p>
+          <p>{{playerOneCard.value}}</p>
+          <p>{{playerOneCard.desc}}</p>
+          <p>{{playerOneCard.priority}}</p>
+        </div>
+        <div class="display-card">
+          <p>{{playerTwoCard.name}}</p>
+          <p>{{playerTwoCard.value}}</p>
+          <p>{{playerTwoCard.desc}}</p>
+          <p>{{playerTwoCard.priority}}</p>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <ul ng-repeat="card in playerTwoCards">
-        <div>
-          <li>{{card.name}}</li>
-        </div>
-      </ul>
+      <div class="row">
+        <ul ng-repeat="card in playerOne.cards">
+          <div ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)" class="black">
+            <li>{{card.name}}</li>
+          </div>
+        </ul>
+      </div>
     </div>
-
       <div ng-click="reset()">reset</div>
   </div>
 </body>
