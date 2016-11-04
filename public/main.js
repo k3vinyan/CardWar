@@ -7,9 +7,11 @@
     $scope.playerTwoScore = 0;
     $scope.playerOneCards = player1;
     $scope.playerTwoCards = player2;
-    $scope.deck = deck;
+
+
 
     $scope.startRound = function(card, playerOneCards, playerTwoCards, compareCard, deleteCards){
+      console.log(playerTwoCards);
       var playerOneCard = card;
       var playerTwoCard = randomCard(playerTwoCards);
       compareCard(playerOneCard, playerTwoCard, playerOneCards, playerTwoCards, deleteCards);
@@ -44,6 +46,51 @@
 
     let randomCard = function(deck){
       return deck[Math.floor((Math.random()*deck.length))]
+    }
+
+    $scope.reset = function() {
+      $scope.playerOneScore = 0;
+      $scope.playerTwoScore = 0;
+      this.playerOneCards = [
+          {
+            name: "one",
+            value: 1
+          },
+          {
+            name: "two",
+            value: 2
+          },
+          {
+            name: "three",
+            value: 3
+          },
+          {
+            name: "four",
+            value: 4
+          },
+          {
+            name: "five",
+            value: 5
+          },
+          {
+            name: "six",
+            value: 6
+          },
+          {
+            name: "seven",
+            value: 7
+          },
+          {
+            name: "nine",
+            value: 8
+          },
+          {
+            name: "nine",
+            value: 9
+          },
+        ]
+
+
     }
 
   });
