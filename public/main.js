@@ -4,6 +4,7 @@
 
 
   cardGame.controller('gameCtrl', function($scope) {
+  
     $scope.playerOneScore = playerOne.score;
     $scope.playerTwoScore = playerTwo.score;
     $scope.playerOne = playerOne;
@@ -22,11 +23,14 @@
 
     };
 
+
     $scope.startRound = function(cardPick, playerOne, playerTwo, compareCard, deleteCards){
+
       var playerOneCardPick = cardPick;
       var playerTwoCardPick = randomCard(playerTwo.cards);
       $scope.playerOneCard = playerOneCardPick;
       $scope.playerTwoCard = playerTwoCardPick;
+
       //check for carry Power and excute
       if(carryRound.powers.length > 0){
         for(var i = 0; i < carryRound.powers.length; i++) {
@@ -35,77 +39,89 @@
       };
 
       if(carryRound.players.player1.value > 0){
-        playerOneCardPick.value += carryRound.players.player1.value;
+        playerOneCardPick.value = playerOneCardPick.value + carryRound.players.player1.value;
+        console.log(playerOneCardPick.value);
         carryRound.players.player1.value = 0;
+        console.log("player1 +2")
       } else if(carryRound.players.player2.value > 0){
         playerTwoCardPick.value += carryRound.players.player2.value;
         carryRound.players.player1.value = 0;
+        console.log("player2 +2")
       }
 
-      compareCard(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo, deleteCards);
+        compareCard(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo, deleteCards);
+
     }
 
     $scope.compareCard = function(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo, deleteCards){
-
-      //musician card
-      if(playerOneCardPick.name === "Musician" || playerTwoCardPick.name === "Musician") {
-        carryRound.points++;
-        deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
-        return
-      }
-
-      //general card
-      if(playerOneCardPick.name === "General"){
-        carryRound.players.player1.value++;
-      } else if(playerTwoCardPick.name === "General"){
-        carryRound.players.player2.value++;
-      }
-
 
       //comparing Wizard
       if(playerOneCardPick.name === "Wizard" || playerTwoCardPick.name === "Wizard") {
         if(playerOneCardPick.value > playerTwoCardPick.value){
           playerOne.score = carryRound.points + 1;
           carryRound.points = 0;
+          console.log("playerOne Wizard");
+          deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
+          return
         } else if(playerOneCardPick.value < playerTwoCardPick.value){
           playerTwo.score = carryRound.points + 1;
           carryRound.points = 0;
+          deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
+          console.log("playerTwo Wizard")
         } else if(playerOneCardPick.value === playerTwoCardPick.value){
           console.log("tie");
-          carryRound.point++
+          carryRound.points++
+          deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
+          return
         }
+      }
+      //musician card
+      if(playerOneCardPick.name === "Musician" || playerTwoCardPick.name === "Musician") {
+        carryRound.points++;
+        deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
+        console.log("musician");
+        return
+      }
+
+      //general card
+      if(playerOneCardPick.name === "General"){
+        carryRound.players.player1.value += 2;
+        console.log("General: " + carryRound.players.player1.value++)
+      } else if(playerTwoCardPick.name === "General"){
+        carryRound.players.player2.value += 2;
+        console.log("General: " + carryRound.players.player1.value++)
       }
 
       //comparing princess card
-      if(playerOneCardPick.name === "princess" && playerTwoCardPick.name === "prince"){
+      if(playerOneCardPick.name === "Princess" && playerTwoCardPick.name === "Prince"){
         console.log("player 1 win");
-      } else if (playerOneCardPick.name === "prince" && playerTwoCardPick.name === "princess"){
+      } else if (playerOneCardPick.name === "Prince" && playerTwoCardPick.name === "Princess"){
         console.log("player 2 win");
       }
 
       //comparing Ambassador
       if(playerOneCardPick.name === "Ambassador" && playerOneCardPick.value > playerTwoCardPick.value){
-        playerOne.score = carryRound.points + 1;
-        console.log('hi')
+        playerOne.score = PlayerOne.score + carryRound.points + 1;
+        console.log('playerOne Ambassador')
         carryRound.points = 0;
       } else if(playerTwoCardPick.name === "Ambassador" && playerTwoCardPick.value > playerOneCardPick.value){
-        playerTwo.score = carryRound.points + 1;
+        playerTwo.score = PlayerTwo.score + carryRound.points + 1;
         carryRound.points = 0;
-        console.log('hello')
+        console.log('Ambassador')
       }
 
-      //lowest strength win
+      //lAssassin
       if(playerOneCardPick.name === "Assassin" || playerTwoCardPick.name === "Assassin"){
         if(playerOneCardPick.value > playerTwoCardPick.value) {
-          playerTwo.score = carryRound.points + 1;
+          playerTwo.score = playerTwo.score + carryRound.points + 1;
           carryRound.points = 0;
-          console.log("hit")
+          console.log("playerOne Assassin")
           deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
           return
         } else if(playerOneCardPick.value < playerTwoCardPick.value){
-          playerOne.score = carryRound.points + 1;
+          playerOne.score = playerOne.score + carryRound.points + 1;
           carryRound.points = 0;
-          console.log("miss")
+          console.log("playerOne Assassin")
           deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
           return
         }
@@ -113,17 +129,22 @@
 
       //compare value
       if(playerOneCardPick.value > playerTwoCardPick.value){
-        playerOne.score = carryRound.points + 1;
+        playerOne.score = playerOne.score + carryRound.points + 1;
+        console.log("before PlayerOne " + playerOne.score)
         carryRound.points = 0;
+        console.log("compare player1 " + playerOne.score);
       } else if(playerOneCardPick.value < playerTwoCardPick.value){
-        playerTwo.score = carryRound.points + 1;
+        console.log("before PlayerTwo " + playerTwo.score)
+        playerTwo.score = playerTwo.score + carryRound.points + 1;
         carryRound.points = 0;
+        console.log("compare player2 " + playerTwo.score)
       } else if(playerOneCardPick.value === playerTwoCardPick.value){
         console.log("tie");
-        carryRound.point++
+        carryRound.points++;
       }
 
       deleteCards(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo);
+
     };
 
     $scope.deleteCards = function(playerOneCardPick, playerTwoCardPick, playerOne, playerTwo){
@@ -150,6 +171,8 @@
         alert("player2 win");
       }
     };
+
+
     $scope.reset = function() {
       $scope.playerOneScore = 0;
       $scope.playerTwoScore = 0;
