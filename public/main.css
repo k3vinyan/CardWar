@@ -42,6 +42,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+
+span.desc{
+	border-style: solid;
+	border-color: black;
+	border-width: medium;
+	position: relative;
+	margin: auto;
+	width: auto;
+	height: auto;
+}
 .row {
   display: flex;
   justify-content: center;

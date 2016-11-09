@@ -53,21 +53,11 @@ playerOne.cards = [
         image: "images/jake.png"
       },
       {
-        name: "Prince",
+        name: "Finn",
         player: "null",
         value: 7,
         desc: "You win the round",
-        priority: 0,
-        power: {
-          type: "instance",
-          cast: function(playerCard, opponentCard, playerScore, opponentScore){
-            if(playerCard.value > opponentCard){
-              playerScore++;
-            } else {
-              opponentScore++;
-            }
-          }
-        }
+        image: "images/finn.png"
       }
     ]
 

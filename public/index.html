@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="cards.js"></script>
-  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="main.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="jq.js"></script>
   <link rel="stylesheet" href="main.css">
   <title>Document</title>
 </head>
 <body>
   <h1 class="center">Adventure Time</h1>
   <div class="board-container"  ng-controller="gameCtrl" >
+    <span class="desc"></span>
     <div>Player1 Score: {{playerOne.score}}  | Player2 Score: {{playerTwo.score}}</div>
       <div class="row">
         <ul ng-repeat="card in playerTwo.cards">
@@ -25,6 +27,7 @@
     <div>
       <div class="row">
         <div class="display-card">
+          <div class="info"></div>
           <p>{{playerOneCard.name}</p>
           <p>{{playerOneCard.value}}</p>
           <p>{{playerOneCard.desc}}</p>
@@ -43,7 +46,7 @@
         <ul ng-repeat="card in playerOne.cards">
           <div ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)" class="black">
             <div class="card">
-            <li><img src={{card.image}} alt="image of card"  class="player-card"/></li>
+            <li><img src={{card.image}} alt="image of card"  class="player-card" data-desc={{card.desc}} /></li>
             </div>
           </div>
         </ul>
