@@ -12,20 +12,20 @@
   <title>Document</title>
 </head>
 <body>
-  <h1 class="center">Z Warrior</h1>
+  <h1 class="center">Adventure Time</h1>
   <div class="board-container"  ng-controller="gameCtrl" >
     <div>Player1 Score: {{playerOne.score}}  | Player2 Score: {{playerTwo.score}}</div>
       <div class="row">
         <ul ng-repeat="card in playerTwo.cards">
-          <div>
-            <li>{{card.name}}</li>
+          <div class="card">
+            <li><img src="images/back-of-card.png" class="opponent-card"/></li>
           </div>
         </ul>
       </div>
     <div>
       <div class="row">
         <div class="display-card">
-          <p>{{playerOneCard.name}}</p>
+          <p>{{playerOneCard.name}</p>
           <p>{{playerOneCard.value}}</p>
           <p>{{playerOneCard.desc}}</p>
           <p>{{playerOneCard.priority}}</p>
@@ -42,7 +42,9 @@
       <div class="row">
         <ul ng-repeat="card in playerOne.cards">
           <div ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)" class="black">
-            <li>{{card.name}}</li>
+            <div class="card">
+            <li><img src={{card.image}} alt="image of card"  class="player-card"/></li>
+            </div>
           </div>
         </ul>
       </div>

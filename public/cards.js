@@ -4,113 +4,57 @@ playerOne.score = 0;
 playerTwo.score = 0;
 
 playerOne.cards = [
-      { name: "Musician",
-        player: "player1",
+      { name: "Tree Trunk",
+        player: null,
         value: 0,
         desc: "This round is nullifed and put on hold",
-        priority: 1000,
-        power: {
-          type: "carry",
-          cast: function(point){
-            var point = 1;
-          }
-        }
+        image: "images/treetrunk.png"
       },
       {
-        name: "Princess",
-        player: "player1",
+        name: "Princess Bubble Gum",
+        player: null,
         value: 1,
         desc: "If your opponent plays the prince, you automatically win the game",
-        priority: 6,
-        power: {
-          type: "instance win",
-          cast: function(playerCard, opponentCard){
-            if(opponentCard.name === "Prince") {
-              console.log("Game Over");
-            }
-          }
-        }
+        image: "images/princess.png"
       },
       {
-        name: "Spy",
-        player: "player1",
+        name: "Beemo",
+        player: null,
         value: 2,
         desc: "Next round, your opponent reveals his card before you choose yours",
-        priority: 5,
-        power: {
-          type: "carry",
-          cast: function(){
-            console.log("I am a spy")
-          }
-        }
+        image: "images/beemo.png"
       },
       {
-        name: "Assassin",
-        player: "player1",
+        name: "Lich King",
+        player: null,
         value: 3,
         desc: "The lowest strength wins",
-        priority: 4,
-        power: {
-          type: "instance",
-          cast: function(playerCard, opponentCard, playerScore, opponentScore){
-            if(playerCard.value < opponentCard.value) {
-              playerScore++;
-            } else {
-              opponentScore++;
-            }
-          }
-        }
+        image: "images/lich.png"
       },
       {
-        name: "Ambassador",
-        player: "player1",
+        name: "Marceline",
+        player: null,
         value: 4,
         desc: "If you win with this card, it counts as 2 victories",
-        priority: 3,
-        power: {
-          type: "instance",
-          cast: function(playerCard, opponentCard, playerScore, opponentScore){
-            if(playerCard > opponentCard) {
-              playerScore += 2;
-            } else {
-              opponentScore++;
-            }
-          }
-        }
+        image: "images/marceline.png"
       },
       {
-        name: "Wizard",
-        player: "player1",
+        name: "Ice King",
+        player: null,
         value: 5,
         desc: "Nullifies the special Power of your opponent card",
-        priority: 10,
-        power: {
-          type: "instance",
-          cast: function(playerCard, opponentCard, playerScore, opponentScore){
-            if(playerCard.value > opponentCard.value){
-              playerScore++;
-            } else {
-              opponentScore++
-            }
-          }
-        }
+        image: "images/iceking.png"
       },
       {
-        name: "General",
-        player: "player1",
+        name: "Jake",
+        player: null,
         value: 6,
         desc: "The Card in your next round get +2 strength",
-        priority: 1,
-        power: {
-          type: "carry",
-          cast: function(playerCard, opponentCard, playerScore, opponentScore){
-            console.log("Nothing yet");
-          }
-        }
+        image: "images/jake.png"
       },
       {
         name: "Prince",
-        player: "player1",
+        player: "null",
         value: 7,
         desc: "You win the round",
         priority: 0,
