@@ -102,3 +102,7 @@ div.card {
   width: 200px;
   height: 300px;
 }
+.reset {
+	position: absolute;
+	bottom: 0px;
+}
