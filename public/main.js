@@ -4,11 +4,9 @@
 
 
   cardGame.controller('gameCtrl', function($scope) {
-  
-    $scope.playerOneScore = playerOne.score;
-    $scope.playerTwoScore = playerTwo.score;
-    $scope.playerOne = playerOne;
-    $scope.playerTwo = playerTwo;
+
+    $scope.playerOne = createPlayer("playerOne");
+    $scope.playerTwo = createPlayer("playerTwo");
 
     var carryRound = {
       points: 0,
