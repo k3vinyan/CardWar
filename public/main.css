@@ -63,6 +63,27 @@ div.card {
   width: 200px;
   height: auto;
 }
+.player-card:hover {
+  position: relative;
+  -webkit-animation-name: moveCardUp;
+  -webkit-animation-duration: 0.75s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: moveCardUp;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+
+}
+
+@-webkit-keyframes moveCardUp {
+  0% {left: 0px; top: 0px;}
+  100% {left: 0px; top: -100px;}
+}
+
+@keyframes moveCardUp {
+  0% {left: 0px; top: 0px;}
+  100% {left: 0px; top: -100px;}
+}
+
 .display-card {
   border-style: solid;
   border-color: black;
