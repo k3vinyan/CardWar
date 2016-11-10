@@ -14,46 +14,50 @@
 </head>
 <body>
   <h1 class="center">Adventure Time</h1>
-  <div class="board-container"  ng-controller="gameCtrl" >
-    <span class="desc"></span>
-    <div>Player1 Score: {{playerOne.score}}  | Player2 Score: {{playerTwo.score}}</div>
-      <div class="row">
-        <ul ng-repeat="card in playerTwo.cards">
-          <div class="card">
-            <li><img src="images/back-of-card.png" class="opponent-card"/></li>
-          </div>
-        </ul>
-      </div>
-    <div>
-      <div class="row">
-        <div class="display-card">
-          <div class="info"></div>
-          <p>{{playerOneCard.name}</p>
-          <p>{{playerOneCard.value}}</p>
-          <p>{{playerOneCard.desc}}</p>
-          <p>{{playerOneCard.priority}}</p>
+  <span class="board-container"  ng-controller="gameCtrl" >
+
+    <!-- player 2 hand -->
+    <div class="deck">
+      <span ng-repeat="card in playerTwo.cards">
+        <div class="card">
+          <img src="images/back-of-card.png" class="card"/>
         </div>
-        <div class="display-card">
-          <p>{{playerTwoCard.name}}</p>
-          <p>{{playerTwoCard.value}}</p>
-          <p>{{playerTwoCard.desc}}</p>
-          <p>{{playerTwoCard.priority}}</p>
-        </div>
-        <div class="">{{playerOne.score}}</div>
-      </div>
-    </div>
-      <div class="row">
-        <ul ng-repeat="card in playerOne.cards">
-          <div ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)" class="black">
-            <div class="card">
-            <li><img src={{card.image}} alt="image of card"  class="player-card" data-desc={{card.desc}} /></li>
-            </div>
-          </div>
-        </ul>
-      </div>
-      <div ng-click="playAgain()" class="reset">reset</div>
+      </span>
     </div>
 
-  </div>
+    <!-- playing field -->
+    <div class="field">
+      <div class="info-board">
+        <span class="desc"></span>
+      </div>
+      <div class="card card-margin">
+        <img src="{{playerTwoCard.image}}" class="card" />
+      </div>
+      <div class="card card-margin">
+        <img src="{{playerOneCard.image}}" class="card" data-desc="{{playerOneCardPick.desc}}" />
+      </div>
+      <div class="score-board">
+        <div>Player Two Score: {{playerOne.score}}</div>
+        <div>Player One Score: {{playerTwo.score}}</div>
+      </div>
+    </div>
+
+    <!-- player 1 hand -->
+    <div class="deck border">
+      <span ng-repeat="card in playerOne.cards">
+        <span ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)">
+          <div class="card">
+            <img src={{card.image}} alt="image of card"  class="card" data-desc={{card.desc}} />
+          </div>
+        </span>
+      </span>
+    </div>
+
+      <div ng-click="playAgain()" class="reset">playAgain</div>
+  </span>
+
+
+
+
 </body>
 </html>
