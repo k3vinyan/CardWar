@@ -17,6 +17,23 @@
       powers: []
     };
 
+    $scope.cardPosition = function(cards){
+      var count = 0
+      if(cards.length/ 2 > count){
+        count++;
+
+      }
+    }
+
+    //rotate cards
+    $scope.cardDisplay = function(type, value){
+      if(type === "rotation"){
+        return ("rotate-" + value)
+      } else if(type === "up"){
+        return ("card-up-" + value)
+      }
+    }
+
     $scope.startRound = function(cardPick, playerOne, playerTwo, compareCard, deleteCards){
 
       var playerOneCardPick = cardPick;
@@ -41,6 +58,8 @@
     }
 
     $scope.compareCard = function(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick, deleteCards){
+
+
 
       //Ice King
       if(playerOneCardPick.name === "Ice King" || playerTwoCardPick.name === "Ice King") {

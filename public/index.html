@@ -28,7 +28,9 @@
     <!-- playing field -->
     <div class="field">
       <div class="info-board">
-        <span class="desc"></span>
+        <div class="desc">
+          
+        </div>
       </div>
       <div class="card card-margin">
         <img src="{{playerTwoCard.image}}" class="card" />
@@ -43,11 +45,11 @@
     </div>
 
     <!-- player 1 hand -->
-    <div class="deck border">
+    <div class="deck">
       <span ng-repeat="card in playerOne.cards">
         <span ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)">
-          <div class="card">
-            <img src={{card.image}} alt="image of card"  class="card" data-desc={{card.desc}} />
+          <div class="card" ng-class="cardDisplay('up', {{card.value}})">
+            <img src={{card.image}} alt="image of card"  class="card card-animation" ng-class="cardDisplay('rotation', {{card.value}})" data-desc={{card.desc}} />
           </div>
         </span>
       </span>
