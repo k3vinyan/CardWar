@@ -12,7 +12,7 @@ var createPlayer = function(player){
         name: "Princess Bubble Gum",
         player: null,
         value: 1,
-        desc: "If your opponent plays the prince, you automatically win the game",
+        desc: "If your opponent plays the Finn, you automatically win the game",
         image: "images/princess.png"
       },
       {
@@ -26,7 +26,7 @@ var createPlayer = function(player){
         name: "Lich King",
         player: null,
         value: 3,
-        desc: "The lowest strength wins",
+        desc: "The lowest strength wins but can be defeated by Finn",
         image: "images/lich.png"
       },
       {
@@ -47,14 +47,14 @@ var createPlayer = function(player){
         name: "Jake",
         player: null,
         value: 6,
-        desc: "The Card in your next round get +2 strength",
+        desc: "Gives your next card +2 Strength",
         image: "images/jake.png"
       },
       {
         name: "Finn",
         player: "null",
         value: 7,
-        desc: "You win the round",
+        desc: "Defeats the Lich King",
         image: "images/finn.png"
       }
     ]
