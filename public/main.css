@@ -1,6 +1,7 @@
 /*css reset*/
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+/*h1, h2, h3, h4, h5, h6,*/
+p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -42,25 +43,55 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+.flip {
+	transform: rotate(-180deg);
+}
 
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+}
+.score-text {
+	font-size: 50px;
+}
 .border {
 	border-style: solid;
 	border-color: lightblue;
 	border-width: medium;;
+}
+.title {
+	max-height: 50px;
+}
+.info-board {
+	text-align: center;
+}
+.score-board {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	max-width: 325px;
 }
 
 .card {
 	width: 200px;
 	height: 250px;
 	border-radius: 5px;
-	margin: 0px -65px 0px -65px;
 	position: relative;
 	-webkit-animation-name: moveCardDown;
 	-webkit-animation-duration: 1s;
 	animation-name: moveCardDown;
 	animation-duration: 1s;
-
+}.margin {
+	margin: 0px -65px 0px -65px;
 }
+
 .card-animation:hover {
   position: relative;
 	z-index: 1000;
@@ -80,25 +111,29 @@ table {
 }
 .field {
 	display: flex;
-	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
+	align-items: stretch;
 	height: 252px;
-
+	margin: 10px 0px 20px 0;
 }
 .card-margin {
 	margin: 10px 10px 10px 10px;
 }
-.score-board {
-	width: 300px;
-	height: 100px;
-}
-.info-board {
-	width: 300px;
-	height: 100px;
-}
 .reset {
 	position: absolute;
 	bottom: 0px;
+}
+
+#desc {
+	min-height: 75px;
+	min-width: 375px;
+	max-width: 375px;
+	text-align: justify;
+}
+
+#desc p {
+	text-align: justify;
+	font-size: 20px;
 }
 
 /*rotate individual cards*/
