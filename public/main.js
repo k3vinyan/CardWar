@@ -1,21 +1,10 @@
 (function() {
 
   var cardGame = angular.module('cardGame', []);
-
-
   cardGame.controller('gameCtrl', function($scope) {
 
     $scope.playerOne = createPlayer("playerOne");
     $scope.playerTwo = createPlayer("playerTwo");
-
-    //points or powers that are carry to the next round
-    var carryRound = {
-      players: {
-        player1: { power: null },
-        player2: { power: null }
-      },
-      points: 0
-    }
 
     $scope.roundMessage = "";
     //rotate cards
@@ -26,6 +15,26 @@
         return ("card-up-" + value)
       }
     }
+
+    //points or powers that are carry to the next round
+    var carryRound = {
+      players: {
+        player1: { power: null },
+        player2: { power: null }
+      },
+      points: 0
+    };
+
+    var resetJakePower = function(round){
+      round.players.player1.power = null;
+      round.players.player1.power = null;
+    }
+
+    var resetRound = function(round){
+      round.points = 0;
+      round.players.player1.power = null;
+      round.players.player2.power = null;
+    };
 
     $scope.startRound = function(cardPick, playerOne, playerTwo, compareCard, deleteCards){
 
@@ -51,85 +60,118 @@
     }
 
     $scope.compareCard = function(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick, deleteCards){
+      $scope.message = "";
+
+      //Jake Power
+      if(carryRound.players.player1.power !== null){
+        playerOneCardPick.value = playerOneCardPick.value + carryRound.players.player1.power;
+      }
+      if(carryRound.players.player2.power !== null){
+        playerTwoCardPick.value = playerTwoCardPick.value + carryRound.players.player2.power;
+      }
+
+      var playOutcome = function(player, message, restRound, deleteCards){
+        player.score = player.score + carryRound.points + 1;
+        $scope.message = message;
+        resetRound(carryRound);
+        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
+      }
+
 
       //Ice King nullifed others powers
       if(playerOneCardPick.name === "Ice King" || playerTwoCardPick.name === "Ice King") {
         if(playerOneCardPick.value > playerTwoCardPick.value){
-          playerOne.score = playerOne.score + carryRound.points + 1;
-          carryRound.points = 0;
-          $scope.message = "Ice King in play, opponent powers are nullified";
-          deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
+          playOutcome(playerOne, "Ice King in play, opponent power are nullified", resetRound, deleteCards);
           return
         }
         if(playerOneCardPick.value < playerTwoCardPick.value){
           playerTwo.score = playerTwo.score + carryRound.points + 1;
-          carryRound.points = 0;
-          deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
-          console.log("playerTwo Ice King Wins")
+          playOutcome(playerTwo, "Ice King in play, opponent powers are nullified", resetRound, deleteCards);
           return
         }
         if(playerOneCardPick.value === playerTwoCardPick.value){
-          console.log("Ice King Tie");
           carryRound.points++
+          $scope.message = "Tie";
+          resetJakePower(carryRound);
           deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
           return
         }
       }
+      //Jake
+      if(playerOneCardPick.name === "Jake"){
+        carryRound.players.player1.power += 2;
+        console.log("Jake in play, plus 2 for next round for player1");
+      }if(playerTwoCardPick.name === "General"){
+        carryRound.players.player2.power += 2;
+        console.log("Jake in play, plus 2 for next round for player2");
+      }
+
       //Tree Trunk round on hold
       if(playerOneCardPick.name === "Tree Trunk" || playerTwoCardPick.name === "Tree Trunk") {
         carryRound.points++;
-        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
         $scope.message = ("Tree Trunk is in play, round is on hold");
+        resetJakePower(carryRound);
+        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
         return
       }
 
       //Princess Bubble Gum
       if(playerOneCardPick.name === "Princess Bubble Gum" && playerTwoCardPick.name === "Finn"){
         console.log("player 1 Princess Bubble Gum win");
+        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
         return
       }if (playerOneCardPick.name === "Finn" && playerTwoCardPick.name === "Princess Bubble Gum"){
         console.log("player 2 Princess Bubble Gum win");
+        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
         return
-      }
-      //Jake
-      if(playerOneCardPick.name === "Jake"){
-        carryRound.players.player1.value += 2;
-        console.log("Jake in play, plus 2 for next round for player1")
-      }if(playerTwoCardPick.name === "General"){
-        carryRound.players.player2.value += 2;
-        console.log("Jake in play, plus 2 for next round for player2")
       }
 
       //Lich King
-      if(playerOneCardPick.name === "Lich King" || playerTwoCardPick.name === "Lich King"){
-        if(playerOneCardPick.name !== "Finn" || playerTwoCardPick.name !== "Finn"){
-          if(playerTwoCardPick.name === "Lich King" && playerOneCardPick.value > playerTwoCardPick.value) {
-            playerTwo.score = playerTwo.score + carryRound.points + 1;
-            carryRound.points = 0;
-            console.log("playerOne Lich King Win")
-            deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
-            return
-          }if(playerOneCardPick.name === "Lich King" && playerOneCardPick.value < playerTwoCardPick.value){
-            playerOne.score = playerOne.score + carryRound.points + 1;
-            carryRound.points = 0;
-            console.log("playerTwo Lich King Win")
-            deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
-            return
-          }
+      if(playerOneCardPick.name === "Lich King"){
+        if(playerTwoCardPick.name === "Finn") {
+          playOutcome(playerTwo, "Finn has defeated the Lich King. Rejoice!", resetRound, deleteCards);
+          console.log("Finn wins(Lich King)")
+          return
+        }
+        if(playerOneCardPick.value < playerTwoCardPick.value){
+          playOutcome(playerOne, "Lich King win", resetRound, deleteCards);
+          console.log("playerOne Lich King")
+          return
+        }
+        if(playerTwoCardPick.value < playerTwoCardPick.value){
+          playOutcome(playerTwo, "The Lich King has been defeated", resetRound, deleteCards);
+          console.log("Lich King defeated");
+          return
         }
       }
+
+      //lich King
+      if(playerTwoCardPick.name === "Lich King"){
+        if(playerOneCardPick.name === "Finn") {
+          playOutcome(playerOne, "Finn has defeated the Lich King", resetRound, deleteCards);
+          return
+        }
+        if(playerTwoCardPick.value < playerOneCardPick.value){
+          playOutcome(playerTwo, "Lich King win", resetRound, deleteCards);
+          return
+        }
+        if(playerOneCardPick.value < playerOneCardPick.value){
+          playOutcome(playerTwo, "Lich King has been defeated", resetRound, deleteCards);
+          return
+        }
+      }
+
       //comparing Marceline
       if(playerOneCardPick.name === "Marceline" && playerOneCardPick.value > playerTwoCardPick.value){
-        playerOne.score = playerOne.score + carryRound.points + 2;
+        playerOne.score++;
         console.log('playerOne Marceline and score')
-        carryRound.points = 0;
-        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
+        playOutcome(playerOne, "Marceline wins! score +2", resetRound, deleteCards);
         return
       }if(playerTwoCardPick.name === "Marceline" && playerTwoCardPick.value > playerOneCardPick.value){
         playerTwo.score = playerTwo.score + carryRound.points + 2;
-        carryRound.points = 0;
+        playerOne.score++;
         console.log('playerTwo played Marceline and score')
-        deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
+          playOutcome(playerTwo, "Marceline wins! score +2", resetRound, deleteCards);
         return
       }
 
@@ -144,27 +186,20 @@
         var beemoPower = function(){
           console.log("Beemo Power")
         };
-        carryRound.players.player1.pwer = beemoPower;
+        carryRound.players.player1.power = beemoPower;
       }
 
       //compare value
       if(playerOneCardPick.value > playerTwoCardPick.value){
-        playerOne.score = playerOne.score + carryRound.points + 1;
-        console.log("before PlayerOne " + playerOne.score)
-        carryRound.points = 0;
-        console.log("player1 win");
+        playOutcome(playerOne, "Player One score!", resetRound, deleteCards);
       }if(playerOneCardPick.value < playerTwoCardPick.value){
-        console.log("before PlayerTwo " + playerTwo.score)
-        playerTwo.score = playerTwo.score + carryRound.points + 1;
-        carryRound.points = 0;
-        console.log("player2 win")
+          playOutcome(playerOne, "Player Two score!", resetRound, deleteCards);
       }if(playerOneCardPick.value === playerTwoCardPick.value){
-        console.log("tie");
+        $scope.message = "Tie";
         carryRound.points++;
+        resetJakePower(carryRound);
       }
-
       deleteCards(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick);
-
     };
 
     $scope.deleteCards = function(playerOne, playerTwo, playerOneCardPick, playerTwoCardPick){
@@ -184,13 +219,6 @@
       return deck[Math.floor((Math.random()*deck.length))]
     }
 
-    let gameOver = function(player){
-      if(player === "player1"){
-        alert("player1 win");
-      } else {
-        alert("player2 win");
-      }
-    };
 
     $scope.playAgain = function() {
       $scope.playerOne = createPlayer("playerOne");

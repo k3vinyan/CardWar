@@ -12,7 +12,7 @@ var createPlayer = function(player){
         name: "Princess Bubble Gum",
         player: null,
         value: 1,
-        desc: "If your opponent plays the Finn, you automatically win the game",
+        desc: "If your opponent plays Finn, you automatically win the game",
         image: "images/princess.png"
       },
       {
