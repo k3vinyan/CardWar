@@ -43,6 +43,19 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+@font-face {
+	font-family: alger;
+	src: url('./fonts/ALGER.TTF');
+}
+
+body {
+	background: url("images/background_2.jpg") no-repeat center;
+}
+h1 {
+	font-family: alger;
+	font-style: normal;
+}
 .flip {
 	transform: rotate(-180deg);
 }
@@ -108,13 +121,20 @@ table {
 	display: flex;
 	justify-content: center;
 	height: 252px;
+	overflow-bottom: hidden;
 }
 .field {
+	z-index: -1;
 	display: flex;
 	justify-content: center;
 	align-items: stretch;
-	height: 252px;
+	height: 400px;
 	margin: 10px 0px 20px 0;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.field:after {
+	background-color: white;
 }
 .card-margin {
 	margin: 10px 10px 10px 10px;
