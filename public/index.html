@@ -9,21 +9,101 @@
   <script src="main.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <script src="jq.js"></script>
+  <script src="board.js"></script>
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="board.css">
   <title>Document</title>
 </head>
 <body>
-  <span class="board-container"  ng-controller="gameCtrl" >
-    <!-- player 2 hand -->
-    <div class="deck">
-      <span ng-repeat="card in playerTwo.cards">
-        <div class="card margin">
-          <img src="images/back-of-card.png" class="card flip"/>
+  <span class="game"  ng-controller="gameCtrl" >
+    <div class="board-container">
+
+      <div class="playerhand-top">
+        <div class="deck">
+            <div ng-repeat="card in playerTwo.cards" class="card-container"> 
+                <img src="images/back-of-card.png" class="card" />
+            </div>
         </div>
-      </span>
+      </div>
+
+      <div class="board">
+        <div class="card-info--container">
+          <div class="card-description">
+            <div>
+              <h3>Card Description</h3>
+            </div>
+            <div id="desc">
+              
+            </div>
+          </div>
+          <div class="round-info">
+            <div>
+                <h3>Round Info</h3>
+            </div>
+            <div>
+                <p>{{message}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-placement-container">
+          <div class="player-one-card-placement">
+              <div>
+                  <h3>Player One</h3>
+              </div>
+              <div>
+                  <img ng-src="{{playerOneCard.image}}" data-desc={{playerOneCard.desc}} />
+              </div> 
+          </div>
+          
+          <div class="player-two-card-placement">
+            <div> 
+                <h3>Player Two</h3>
+              </div>
+              <div>
+                  <img ng-src="{{playerTwoCard.image}}" data-desc={{playerTwoCard.desc}} />
+              </div>
+          </div>
+          
+        </div>
+
+
+        <div class="score-container">  
+
+          <div class="player-one-score">
+            <div>
+              <h3>Player 1 Score</h3>
+            </div>
+            <div>
+              <p>{{playerOne.score}}</p>
+            </div>
+          </div>
+            
+          <div class="player-two-score">
+            <div>
+              <h3>Player 2 Score</h3>
+            </div>
+            <div>
+              <p>{{playerTwo.score}}</p>
+            </div>
+          </div>
+
+        </div>
+        
+     
+
+      <div class="playerhand-bottom">
+        <div class="deck">
+          <div ng-repeat="card in playerOne.cards" class="card-container">
+              <img src={{card.image}} ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)" class="card  card-animation" data-desc={{card.desc}} />
+          </divn>
+        </div>
+      </div>
     </div>
 
-    <!-- playing field -->
+
+    
+    <!-- playing field
     <div class="container">
       <div class="field border">
         <div class="info-board border">
@@ -61,10 +141,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- player 1 hand -->
-    <div class="deck">
+    <!-- <div class="deck">
       <span ng-repeat="card in playerOne.cards">
         <span ng-click="startRound(card, playerOne, playerTwo, compareCard, deleteCards)">
           <div class="card margin" ng-class="cardDisplay('up', {{card.value}})">
@@ -75,8 +155,9 @@
     </div>
 
       <div ng-click="playAgain()" class="reset">playAgain</div>
+  -->
   </span>
-
+</div>
 
 
 
