@@ -7,11 +7,11 @@ Currently I have
 
 ## Technologies Used:
 
-Backend: Node, Express 
+**Backend:** Node, Express 
 
-Frontend: Javascript, jQuery, Angular, HTML, CSS
+**Frontend:** Javascript, jQuery, Angular, HTML, CSS
 
-Design: Photoshop
+**Design:** Photoshop
 
 ## Quick look:
 
