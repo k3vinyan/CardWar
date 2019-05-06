@@ -14,7 +14,15 @@ Design: Photoshop
 
 ![alt text][image-1]
 
-[image-1]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/1.png "Logo Title Text 2"
+[image-1]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/1.png "Starting Hand"
+
+![alt text][image-2]
+
+[image-2]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/2.png "Selecting Card"
+
+![alt text][image-3]
+
+[image-3]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/3.png "Playing Card"
 
 ## Future Endeavour:
 - include modal when game is over and announce the winner
