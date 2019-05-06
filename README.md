@@ -1,7 +1,7 @@
 # Cards War!!! 
-#### Fight to the death card game (I kid)
+*Fight to the death card game (I kid)*
 
-#### The Concept: 
+## The Concept: 
 This game was created based on the popular classic card game 'War'.  I combine the game with my love of Adventure Time and the rest is history.
 Currently I have
 
@@ -26,9 +26,9 @@ Design: Photoshop
 [image-3]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/3.png "Playing Card"
 
 ## Future Endeavour:
-- include modal when game is over and announce the winner
-- option to play with computer or another player online/local
-- title screen 
+- Include modal when game is over and announce the winner
+- Option to play with computer or another player online/local
+- Title screen 
 
 ## How to Run Game:
 
