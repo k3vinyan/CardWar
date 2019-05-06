@@ -105,6 +105,28 @@ h1 {
 	margin: 0px -65px 0px -65px;
 }
 
+.card-position {
+	margin: 50px;
+}
+
+.player-header {
+	text-align: center;
+}
+
+.card-info {
+	font-weight: bold;
+	text-align: center;
+	font-size: 18px;
+	padding: 20px 20px 0 20px;
+}
+
+.round-info {
+	font-weight: bold;
+	text-align: center;
+	font-size: 18px;
+	padding: 20px 20px 0 20px;
+}
+
 .card-animation:hover {
   position: relative;
 	z-index: 1000;

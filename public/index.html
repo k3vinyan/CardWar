@@ -27,34 +27,36 @@
     <div class="container">
       <div class="field border">
         <div class="info-board border">
-          <div class="title border">
+          <div class="title">
             <h1>Card Description</h1>
           </div>
-          <div id="desc" class="border">
+          <div id="desc" class="border card-info">
 
           </div>
-          <div class="title border">
+          <div class="border">
             <h1>Round Info</h1>
+          </div>
+          <div class="round-info">
             {{message}}
           </div>
         </div>
-        <div class="card border">
-          <img src="{{playerOneCard.image}}" class="card test" data-desc={{playerOneCard.desc}} />
+        <div>
+          <img ng-src="{{playerOneCard.image}}" class="card card-position" data-desc={{playerOneCard.desc}} />
         </div>
-        <div class="card border">
-          <img src="{{playerTwoCard.image}}" class="card test" data-desc={{playerTwoCard.desc}} />
+        <div>
+          <img ng-src="{{playerTwoCard.image}}" class="card card-position" data-desc={{playerTwoCard.desc}} />
         </div>
         <div class="score-board border">
           <div class="border">
             <div>
-              <h1>Player One</h1>
+              <h1 class="player-header">Player One</h1>
             </div>
             <div class="center">
               <div><p class="score-text">{{playerOne.score}}</p></div>
             </div>
           </div>
           <div class="border">
-            <div><h1>Player Two</h1></div>
+            <div><h1 class="player-header">Player Two</h1></div>
             <div class="center">
               <div><p class="score-text">{{playerTwo.score}}</p></div>
             </div>
