@@ -1,4 +1,5 @@
-# Cards War!!! Fight to the death card game (I kid)
+# Cards War!!! 
+#### Fight to the death card game (I kid)
 
 #### The Concept: 
 This game was created based on the popular classic card game 'War'.  I combine the game with my love of Adventure Time and the rest is history.
