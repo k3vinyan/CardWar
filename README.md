@@ -1,18 +1,20 @@
 # CardsWar
 
-#### The Concept 
+#### The Concept: 
 This game was created based on the popular classic card game 'War'.  I combine the game with my love of Adventure Time and the rest is history.
 Currently I have
 
-## Technologies Used
+## Technologies Used:
 
 Backend: Node, Express 
 Frontend: Javascript, jQuery, Angular, HTML, CSS
 Design: Photoshop
 
-Quick look:
+## Quick look:
 
+![alt text][image-1]
 
+[image-1]: https://github.com/k3vinyan/CardWar/blob/master/public/images/git/1.png "Logo Title Text 2"
 
 ## Future Endeavour:
 - include modal when game is over and announce the winner
