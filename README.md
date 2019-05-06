@@ -8,7 +8,9 @@ Currently I have
 ## Technologies Used:
 
 Backend: Node, Express 
+
 Frontend: Javascript, jQuery, Angular, HTML, CSS
+
 Design: Photoshop
 
 ## Quick look:
